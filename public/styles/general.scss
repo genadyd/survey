@@ -1,0 +1,19 @@
+html{
+  min-height: 100%;
+  body{
+   min-height: 100vh;
+    direction: rtl;
+    #page_wrapper{
+      min-height: 100vh;
+      padding: 0 0 50px;
+.hidden{
+  display: none;
+}
+      @import "components/modal";
+      @import "components/surveys_list";
+     @import "components/navbar";
+     @import "components/survey_form";
+     @import "components/question_form_container";
+    }
+  }
+}

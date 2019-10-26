@@ -1,0 +1,9 @@
+#surveys_list_container {
+  position: fixed;
+  width: 30vw;
+  height: calc(100vh - 51px);
+  left: 30vw;
+  top: 51px;
+  background-color: #bebebe; }
+
+/*# sourceMappingURL=surveys_list.css.map */
