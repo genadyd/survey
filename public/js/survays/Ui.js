@@ -1,4 +1,5 @@
 import {UniqeGenerator} from "../Lib/UniqeGenerator.js";
+import {MasterQuestionsSave} from "../TempSave/MasterQuestionsSave.js";
 
 export class Ui {
      newSurveySave(jsonObj){
@@ -16,10 +17,12 @@ export class Ui {
              .find('.survay_form_header .heading').html('שינוי נתוני שאלון :'+surveyNameBox)
              .end().find('.new_form_save').removeClass('new_form_save').addClass('edit_form_save');
          $('#surveys_list_container .survey_list').prepend(listHtml);
-         questionContainer.find('.question_form_box').attr('question_crypt',UniqeGenerator.getKey());
+         let questionCrypt = UniqeGenerator.getKey();
+         questionContainer.find('.question_form_box').attr('question_crypt', questionCrypt);
          if (questionContainer.is('.hidden')) {
              questionContainer.removeClass('hidden');
          }
+         MasterQuestionsSave.SaveQuestion().saveQuestionObject(questionCrypt, 'שאלה חדשה', '0', '0', jsonObj.crypt, '0')
      }
      getSurveysList(surveysJson){
          let listHtml = '';
@@ -44,7 +47,9 @@ export class Ui {
         .end().find('.new_form_save').removeClass('new_form_save').addClass('edit_form_save');
          $('#surveys_list_container').find('.one_survey').removeClass('bg-light');
         $('#surveys_list_container').find('.one_survey[survey_crypt='+survayJson.crypt+']').addClass('bg-light');
-         questionContainer.find('.question_form_box').attr('question_crypt',UniqeGenerator.getKey());
+         let questionCrypt = UniqeGenerator.getKey();
+         questionContainer.find('.question_form_box').attr('question_crypt',questionCrypt);
+         MasterQuestionsSave.SaveQuestion().saveQuestionObject(questionCrypt, 'שאלה חדשה', '0', '0', survayJson.crypt, '0');
          CKEDITOR.instances['thanks_text'].setData(survayJson.survey_thanks_text);
          if (formContainer.is('.hidden')) {
              formContainer.removeClass('hidden');
