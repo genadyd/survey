@@ -13,6 +13,7 @@ export class Controller {
         this.surEditorInit();
         this.surveyEditSave();
         this.surveyDelete();
+        this.surveyEditorFormOpenClose();
     }
 
     newSurveyFormInit() {
@@ -81,6 +82,22 @@ export class Controller {
 
                 let ajax = new AjaxSender(jsonObject);
                 ajax.AjSender('json');
+            }
+        })
+    }
+    surveyEditorFormOpenClose(){
+        $('#survey_form').on('click', '.survay_form_header .survey_form_openclose .cl',(e)=>{
+            let closer = $(e.target),
+            form = closer.closest('#survey_form').find('.survay_form_container');
+            if(form.is('.hidden')){
+                form.removeClass('hidden');
+                closer.removeClass('fa-chevron-down').addClass(' fa-chevron-up');
+                closer.closest('.survey_form_openclose').attr('title','הסתר את תיבת העריכה של הסקר');
+            }else{
+                form.addClass('hidden');
+                closer.removeClass('fa-chevron-up').addClass('fa-chevron-down');
+                closer.closest('.survey_form_openclose').attr('title','הצג את תיבת העריכה של הסקר');
+
             }
         })
     }

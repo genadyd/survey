@@ -2,4 +2,16 @@
   padding-top: 30px;
   direction: rtl;
   text-align: right;
+  .survay_form_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 1px #ebebeb;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    .survey_form_openclose{
+        cursor:pointer;
+    }
+
+  }
 }

@@ -4,6 +4,9 @@
             <h3 class="heading">
                 הסיף שאלון חדש
             </h3>
+            <div class="survey_form_openclose text-primary" title="הסתר את תיבת העריכה של הסקר">
+                <i class="fas fa-chevron-up cl"></i>
+            </div>
         </div>
         <div class="survay_form_container">
             <div class="form-group">

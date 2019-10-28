@@ -1,4 +1,11 @@
 <div id="question_form_container" class="container hidden">
+    <div class="questions_container_header">
+        <h3>מיכל של שאלות</h3>
+        <div class="questions_container_open_close text-primary">
+            <i class="fas cl fa-chevron-up"></i>
+        </div>
+
+    </div>
     <div class="quuestions_display_container"></div>
     <div class="question_form_box first_quest" parent_element="0" parent_quest="0" question_crypt="0">
         <div class="form-group">

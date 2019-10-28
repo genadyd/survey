@@ -1,7 +1,14 @@
 #question_form_container{
   position: relative;
   text-align: right;
-
+  .questions_container_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .questions_container_open_close{
+      cursor: pointer;
+    }
+  }
   .question_form_box{
     .answers_box{
       .answers_elements_types{
