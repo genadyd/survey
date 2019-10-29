@@ -2,6 +2,7 @@
 import {Controller as SurController} from "./survays/Controller.js";
 import {Controller as questionController} from "./questions/Controller.js";
 import {Controller as elementsController} from "./ellements/Controller.js";
+import {Controller as saveController} from "./save/Controller.js";
 import {Ui} from "./Ui/Ui.js";
 
 $(function () {
@@ -12,6 +13,7 @@ class General {
         this.surveyController = new SurController();
         this.questionController = new questionController();
         this.elementController = new elementsController();
+        this.saveController = new saveController();
         this.skeditorInit();
         this.surOppenList();
     }

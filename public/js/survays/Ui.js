@@ -22,7 +22,7 @@ export class Ui {
          if (questionContainer.is('.hidden')) {
              questionContainer.removeClass('hidden');
          }
-         MasterQuestionsSave.SaveQuestion().saveQuestionObject(questionCrypt, 'שאלה חדשה', '0', '0', jsonObj.crypt, '0')
+
      }
      getSurveysList(surveysJson){
          let listHtml = '';
@@ -49,10 +49,13 @@ export class Ui {
         $('#surveys_list_container').find('.one_survey[survey_crypt='+survayJson.crypt+']').addClass('bg-light');
          let questionCrypt = UniqeGenerator.getKey();
          questionContainer.find('.question_form_box').attr('question_crypt',questionCrypt);
-         MasterQuestionsSave.SaveQuestion().saveQuestionObject(questionCrypt, 'שאלה חדשה', '0', '0', survayJson.crypt, '0');
          CKEDITOR.instances['thanks_text'].setData(survayJson.survey_thanks_text);
          if (formContainer.is('.hidden')) {
-             formContainer.removeClass('hidden');
+             formContainer.removeClass('hidden',function () {
+                 if($('.survay_form_container').is('.hidden')){
+                     $('.survey_form_openclose ').click();
+                 }
+             });
          }
          if (questionContainer.is('.hidden')) {
              questionContainer.removeClass('hidden');

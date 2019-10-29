@@ -9,7 +9,7 @@ export class Controller {
         this.Ui = new questionUi()
         this.AjaxSender = new AjaxSender()
         this.getQuestionsElements();
-        this.QuestionSaveFromMainPage();
+        // this.QuestionSaveFromMainPage();
 }
 getQuestionsElements(){
 $('#question_form_container').on('click','.question_form_box .answers_types_open_close:not(.types_oppened)', (e)=>{
@@ -29,8 +29,9 @@ $('#question_form_container').on('click','.question_form_box .answers_types_open
 QuestionSaveFromMainPage(){
     $('#question_form_container').on('keyup', '#question_name', function () {
         let questionCrypt = $(this).closest('.question_form_box').attr('question_crypt'),
-            questionTitle = $(this).val();
+            questionTitle = $(this).val()||'שאלה חדשה';
         MasterQuestionsSave.SaveQuestion().saveQuestionObjectElement(questionCrypt, 'QuestionTitle', questionTitle);
+        MasterQuestionsSave.SaveQuestion().saveQuestionObject(questionCrypt, 'שאלה חדשה', '0', '0', survayJson.crypt, '0');
     })
 }
 }
