@@ -74,6 +74,7 @@ export class Controller{
                     elementTypeTitle:button.text(),
                     elementQuestionCrypt:button.closest('.question_form_box').attr('question_crypt'),
                     surveyCrypt:$('#survey_form').attr('survey_crypt'),
+                    boxCrypt:button.closest('.one_element_box[sub_type=box]').attr('box_crypt'),
                     button: button
                 }
             let showBehavior ='',

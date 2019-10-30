@@ -1,10 +1,12 @@
- export class ElementFormShowBehaviors {
+import {UniqeGenerator} from "../../Lib/UniqeGenerator.js";
+
+export class ElementFormShowBehaviors {
     constructor(elementObject){
         this.elementObject = elementObject;
     }
      formBuilder(){
         let formHtml ='' +
-             '<div class="one_element_box" element_type="'+this.elementObject.elementType+'" question_crypt="'+this.elementObject.elementQuestionCrypt+'" element_type_crypt="'+this.elementObject.elementTypeCrypt+'">' +
+             '<div class="one_element_box" element_key="'+UniqeGenerator.getKey()+'" element_type="'+this.elementObject.elementType+'" question_crypt="'+this.elementObject.elementQuestionCrypt+'" element_type_crypt="'+this.elementObject.elementTypeCrypt+'">' +
              '<div class="label">התשובה</div>' +
             '<div class="ans_container">' +
             '<div class="type_heading">'+this.elementObject.elementTypeTitle+'</div> ' +

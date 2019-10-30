@@ -27,7 +27,7 @@
         </div>
         <div class="question_container_footer">
              <div class="form-group">
-                <button type="button" class="btn btn-outline-secondary new_question_add">שמור</button>
+                <button type="button" class="btn btn-outline-secondary new_question_add" save_attr="question_container">שמור</button>
             </div>
         </div>
     </div>

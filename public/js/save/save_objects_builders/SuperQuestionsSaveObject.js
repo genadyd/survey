@@ -1,6 +1,6 @@
-export class SuperSaveObject {
+export class SuperQuestionsSaveObject {
     constructor(){
-        this.objForSave = {};
+        this.QuestionsObjForSave = {};
 }
     objectBuilder(){
     //    this is abstract func must reload it
