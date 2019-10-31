@@ -10,12 +10,21 @@
     <div class="question_form_box first_quest" parent_element="0" parent_quest="0" question_crypt="0">
         <div class="form-group">
             <label for="question_name">שאלה</label>
-            <input type="text" class="form-control" id="question_name" placeholder="שאלה">
+            <div class="question_form_field">
+                <input type="text" class="form-control" id="question_name" placeholder="שאלה">
+                <select name="quest_next_act" id="quest_next_act">
+                    <option value="0">פעולה לא מוגדרת</option>
+                    <option value="end_survey">לסיום הסקר</option>
+                    <option value="end_survey_message">לסיום הסקר עם הודעה</option>
+                    <option value="create_new_quest">ליצור שאלה חדשה</option>
+                </select>
+            </div>
         </div>
         <div class="answers_box">
             <div class="answers_elements_types">
                 <div class="types_box_open_close">
-                    <button type="button" class="btn btn-outline-primary answers_types_open_close">הצג סוגי תגובה</button>
+                    <button type="button" class="btn btn-outline-primary answers_types_open_close">הצג סוגי תגובה
+                    </button>
                 </div>
                 <div class="types_container hidden">
 
@@ -26,8 +35,10 @@
             </div>
         </div>
         <div class="question_container_footer">
-             <div class="form-group">
-                <button type="button" class="btn btn-outline-secondary new_question_add" save_attr="question_container">שמור</button>
+            <div class="form-group">
+                <button type="button" class="btn btn-outline-secondary new_question_add" save_attr="question_container">
+                    שמור
+                </button>
             </div>
         </div>
     </div>

@@ -12,6 +12,6 @@ export class SaveQuestionObjectFacthory {
 
         }
         obj.objectBuilder();
-        return obj.objForSave
+        return obj.QuestionsObjForSave
     }
 }

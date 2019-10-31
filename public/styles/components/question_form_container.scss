@@ -10,6 +10,20 @@
     }
   }
   .question_form_box{
+    .question_form_field{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      #question_name{
+        margin-left: 30px;
+      }
+      #quest_next_act{
+        height: 37px;
+        background-color: #fff;
+        border: solid 1px #d5d5d6;
+        border-radius: 4px;
+      }
+    }
     .answers_box{
       .answers_elements_types{
         .types_container{

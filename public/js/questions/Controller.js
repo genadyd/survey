@@ -1,7 +1,11 @@
 import {AjaxSender} from "../ajax/AjaxSender.js";
 import {Model as questionModel} from "./Model.js";
 import {Ui as questionUi} from "./Ui.js";
-import {MasterQuestionsSave} from "../TempSave/MasterQuestionsSave.js";
+import {NewQuestionForm} from "../Modals/modals_behaviors/NewQuestionForm.js";
+import {NewQuestionModal} from "../Modals/NewQuestionModal.js";
+import {MessageForm} from "../Modals/modals_behaviors/MessageForm.js";
+import {MessageModal} from "../Modals/MessageModal.js";
+
 
 export class Controller {
     constructor(){
@@ -26,12 +30,33 @@ $('#question_form_container').on('click','.question_form_box .answers_types_open
 
     })
 }
-QuestionSaveFromMainPage(){
-    $('#question_form_container').on('keyup', '#question_name', function () {
-        let questionCrypt = $(this).closest('.question_form_box').attr('question_crypt'),
-            questionTitle = $(this).val()||'שאלה חדשה';
-        MasterQuestionsSave.SaveQuestion().saveQuestionObjectElement(questionCrypt, 'QuestionTitle', questionTitle);
-        MasterQuestionsSave.SaveQuestion().saveQuestionObject(questionCrypt, 'שאלה חדשה', '0', '0', survayJson.crypt, '0');
-    })
-}
+    questionActProcessing(){
+        $('#question_form_container').on('change','.quest_next_act',(e) => {
+            let select = $(e.target),
+                selectValue = select.val(),
+                elementBox = select.closest('.question_form_box'),
+                elementObject = {
+                    parentQuestion:elementBox.attr('question_crypt'),
+                    parentAnswer:'0',
+                    surveyCrypt:$('#survey_form').attr('survey_crypt'),
+                    parentBoxCrypt:"0",
+                    parentAnswerTitle:'',
+                    parentQuestionTitle:$('#question_name').val(),
+                    select: select
+                }
+            let modalShowBehavior ='',
+                showModalForm = '';
+            switch (selectValue) {
+                case 'create_new_quest':/*new question*/
+                    modalShowBehavior = new NewQuestionForm(elementObject);
+                    showModalForm = new NewQuestionModal(elementObject, modalShowBehavior);
+                    break;
+                case 'end_survey_with_mess':/*end survey with senks message*/
+                    modalShowBehavior = new MessageForm(elementObject);
+                    showModalForm = new MessageModal(elementObject, modalShowBehavior);
+                    break;
+            }
+            showModalForm.modalShow();
+        })
+    }
 }

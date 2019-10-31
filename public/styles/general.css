@@ -106,6 +106,17 @@ html {
           align-items: center; }
           html body #page_wrapper #question_form_container .questions_container_header .questions_container_open_close {
             cursor: pointer; }
+        html body #page_wrapper #question_form_container .question_form_box .question_form_field {
+          display: flex;
+          justify-content: space-between;
+          align-items: center; }
+          html body #page_wrapper #question_form_container .question_form_box .question_form_field #question_name {
+            margin-left: 30px; }
+          html body #page_wrapper #question_form_container .question_form_box .question_form_field #quest_next_act {
+            height: 37px;
+            background-color: #fff;
+            border: solid 1px #d5d5d6;
+            border-radius: 4px; }
         html body #page_wrapper #question_form_container .question_form_box .answers_box .answers_elements_types .types_container {
           padding: 2%;
           display: flex;
