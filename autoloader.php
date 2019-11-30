@@ -29,6 +29,13 @@ function autoloadQuestion($class_name){
         require $file_path;
     }
 }
+function autoloadQuestionShow($class_name){
+    $class_array = explode('\\',$class_name);
+    $file_path =  __DIR__.'/api/modules/questions/question_presentation_builder/'.end($class_array).'.php';
+    if(is_readable($file_path)){
+        require $file_path;
+    }
+}
 function autoloadAnswer($class_name){
     $class_array = explode('\\',$class_name);
     $file_path =  __DIR__.'/api/modules/answers/'.end($class_array).'.php';
@@ -51,7 +58,7 @@ function autoloadDbProcessor($class_name){
 //        require $file_path;
 //    }
 //}
-//spl_autoload_register("autoloadRouter");
+spl_autoload_register("autoloadQuestionShow");
 spl_autoload_register("autoloadAjaxModules");
 spl_autoload_register("autoloadSurvey");
 spl_autoload_register("autoloadQuestion");

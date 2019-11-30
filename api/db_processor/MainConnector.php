@@ -11,6 +11,7 @@ abstract class MainConnector
 {
   protected $db_name, $db_host, $db_user, $db_pass;
   protected static $instance = NULL;
+  protected static $connector;
   protected function __construct(string $db_connection_array_key)
   {
       require 'config.php';
@@ -21,11 +22,12 @@ abstract class MainConnector
 
   }
   public static function getInstance(string $db_connection_array_key){
+
       if(is_null(static::$instance)){
           static::$instance = new static( $db_connection_array_key);
-          $connector = static::$instance->getPdoConnection();
+          static::$connector = static::$instance->getPdoConnection();
       }
-      return $connector;
+      return static::$connector;
 }
 
   public function getPdoConnection(){

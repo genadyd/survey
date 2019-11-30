@@ -11,6 +11,7 @@ namespace Modules\Questions;
 
 
 use DBprocessor\Processor\SmartFormProcessor;
+use Modules\Questions\ShowBuilder\QuestObjectShowBuilder;
 
 class MainQuestion
 {
@@ -36,21 +37,50 @@ public function questionsSave(){
        $previus_answer_crypt = htmlspecialchars($question['PreviusAnswerCrypt']);
        $question_text = htmlspecialchars($question['QuestionText']);
        $question_next_action = htmlspecialchars($question['QuestionNextAction']);
+//       get new Order
+       $question_order = $this->getOrder();
 
-       $query = "INSERT INTO sf_questions (crypt, syrvey_crypt, previus_question_crypt, previus_answer_crypt, question_text, question_next_action) 
-                 VALUES ( :CRYPT, :SURVEY_CRYPT, :PREVIUS_QUESTION_CRYPT, :PREVIUS_ANSWER_CRYPT, :QUESTION_TEXT, :QUESTION_NEXT_ACTION )";
+
+       $query = "INSERT INTO sf_questions (crypt, syrvey_crypt, previus_question_crypt, previus_answer_crypt, question_text, question_next_action, question_order) 
+                 VALUES ( :CRYPT, :SURVEY_CRYPT, :PREVIUS_QUESTION_CRYPT, :PREVIUS_ANSWER_CRYPT, :QUESTION_TEXT, :QUESTION_NEXT_ACTION , :QUEST_ORDER )";
        $params = array(
            ":CRYPT" => array('val'=>$crypt, 'type'=>\PDO::PARAM_STR),
            ":SURVEY_CRYPT" => array('val'=>$syrvey_crypt, 'type'=>\PDO::PARAM_STR),
            ":PREVIUS_QUESTION_CRYPT" =>array('val'=> $previus_question_crypt, 'type'=>2),
            ":PREVIUS_ANSWER_CRYPT" => array('val'=>$previus_answer_crypt,'type'=>2),
            ":QUESTION_TEXT" => array('val'=>$question_text, 'type' => 2),
-           ":QUESTION_NEXT_ACTION" => array('val'=>$question_next_action, 'type'=>2)
+           ":QUESTION_NEXT_ACTION" => array('val'=>$question_next_action, 'type'=>2),
+           ":QUEST_ORDER" => array('val'=>$question_order, 'type'=>1)
        );
        $res = $this->DB->query($query, $params);
 
    }
     return var_dump($res);
 
+}
+protected function getAllQuestionsBySurveyCrypt(){
+        $query = "SELECT * FROM sf_questions WHERE syrvey_crypt = :SUR_CRYPT ";
+        $params = array(
+            ":SUR_CRYPT" => array('val'=>$this->form_data['survey_crypt'], 'type'=>\PDO::PARAM_STR)
+        );
+    $res = $this->DB->query($query, $params, true);
+    return $res;
+}
+public function getQuestionsAnswersObjectForPresentation(){
+        $res = $this->getAllQuestionsBySurveyCrypt();
+    $questions_array = array();
+    if(count($res)>0) {
+        foreach ($res as $key => $val) {
+            $builder = new QuestObjectShowBuilder($val);
+            $questions_array[$key] = $builder->exequte();
+        }
+    }
+    return $questions_array;
+}
+protected function getOrder(){
+       $query = "SELECT question_order FROM sf_questions ORDER BY question_order DESC  LIMIT 1 ";
+    $res = $this->DB->query($query, array());
+    if($res) return $res['question_order']+1;
+    return 1;
 }
 }

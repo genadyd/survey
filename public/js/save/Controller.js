@@ -19,10 +19,13 @@ export class Controller {
             saveQuestionsObj['func'] = 'questionsSave';
             saveQuestionsObj['module'] = 'questions';
             saveQuestionsObj['class'] = 'Question';
-            this.Model.questionSaveAjaxSender(saveQuestionsObj);/*Send Quesrion Object to Save*/
+            this.Model.saveAjaxSender(saveQuestionsObj);/*Send Question Object to Save*/
             //==================================================================
-            console.log(saveQuestionsObj);
-            console.log(saveAnsObj);
+            //prepare Answers Object to save======================================
+            saveAnsObj['func'] = 'answersSave';
+            saveAnsObj['module'] = 'answers';
+            saveAnsObj['class'] = 'Answer';
+            this.Model.saveAjaxSender(saveAnsObj);/*Send Answers Object to Save*/
         } )
     }
 }

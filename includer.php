@@ -10,6 +10,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR .__DIR__.'/api/db_processor
 set_include_path(get_include_path() . PATH_SEPARATOR .__DIR__.'/api/db_processor');
 set_include_path(get_include_path() . PATH_SEPARATOR .__DIR__.'/public/templates/admin/components');
 set_include_path(get_include_path() . PATH_SEPARATOR .__DIR__.'/api/modules/questions');
+set_include_path(get_include_path() . PATH_SEPARATOR .__DIR__.'/api/modules/questions/question_presentation_builder');
 set_include_path(get_include_path() . PATH_SEPARATOR .__DIR__.'/api/modules/surveys');
 set_include_path(get_include_path() . PATH_SEPARATOR .__DIR__.'/api/modules/answers');
 //set_include_path(get_include_path() . PATH_SEPARATOR .__DIR__.'/public/templates/layouts/home');

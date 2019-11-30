@@ -4,7 +4,11 @@ export class Model {
     constructor(){
 
     }
-    questionSaveAjaxSender(obj){
+    saveAjaxSender(obj){
+        let ajax = new AjaxSender(obj);
+        ajax.AjSender('json');
+    }
+    answersSaveAjaxSender(obj){
         let ajax = new AjaxSender(obj);
         ajax.AjSender('json');
     }

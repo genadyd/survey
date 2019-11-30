@@ -1,5 +1,5 @@
 
-import {Controller as SurController} from "./survays/Controller.js";
+import {Controller as SurController} from "./surveys/Controller.js";
 import {Controller as questionController} from "./questions/Controller.js";
 import {Controller as elementsController} from "./ellements/Controller.js";
 import {Controller as SaveController} from "./save/Controller.js";

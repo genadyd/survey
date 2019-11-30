@@ -7,9 +7,10 @@ export class QuestionFormNewAnswersSave extends SuperAnswersSaveObject{
             questionCrypt = $('.question_form_box ').attr('question_crypt'),
             answersElements = boxContainer.find('.answers_forms_container .one_element_box:not([sub_type=box])'),
             that = this;
+        that.AnswersObjForSave['answers'] = {};
         $.each(answersElements, function () {
             let answerCrypt = $(this).attr('element_key');
-            that.AnswersObjForSave[answerCrypt] = {
+            that.AnswersObjForSave['answers'][answerCrypt] = {
                 'AnswerCrypt':answerCrypt,
                 'QuestionCrypt':$(this).attr('question_crypt'),
                 'AnswerTypeCrypt':$(this).attr('element_type_crypt'),

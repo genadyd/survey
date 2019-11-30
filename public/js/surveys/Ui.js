@@ -1,4 +1,5 @@
 import {UniqeGenerator} from "../Lib/UniqeGenerator.js";
+import {Ui as SurUi} from "../questions/Ui.js";
 
 
 export class Ui {
@@ -57,6 +58,8 @@ export class Ui {
                  }
              });
          }
+         let qUi = new SurUi();
+         qUi.questonsListHtmlBuilder(survayJson.questions);
          if (questionContainer.is('.hidden')) {
              questionContainer.removeClass('hidden');
          }

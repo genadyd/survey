@@ -11,6 +11,7 @@ namespace Modules\Surveys;
 
 
 use DBprocessor\Processor\SmartFormProcessor;
+use Modules\Questions\Question;
 
 abstract class MainSurvey {
     protected $form_data;
@@ -48,6 +49,8 @@ abstract class MainSurvey {
     $query = "SELECT * FROM sf_surveys WHERE crypt = :CRYPT ";
     $params = array(":CRYPT"=> array('val'=>$survey_crypt, 'type'=>\PDO::PARAM_STR));
        $res = $this->DB->query($query, $params, false);
+       $question = new Question(array('survey_crypt'=>$survey_crypt));
+       $res['questions'] = $question->getQuestionsAnswersObjectForPresentation();
        $res['survey_thanks_text']= htmlspecialchars_decode($res['survey_thanks_text']);
        return json_encode($res);
    }
