@@ -11,9 +11,10 @@ namespace Modules\Questions;
 
 
 use DBprocessor\Processor\SmartFormProcessor;
+use Interfaces\ModelInterface;
 use Modules\Questions\ShowBuilder\QuestObjectShowBuilder;
 
-class MainQuestion
+class MainQuestion implements ModelInterface
 {
     protected $form_data;
     protected $DB ;
@@ -24,11 +25,9 @@ class MainQuestion
     }
 
     public function getQuestionElementsTypes(){
-    $query = 'SELECT * FROM sf_elements_types WHERE parent_block = 0  ';
-    $res = $this->DB->query($query, array(),true);
-    return json_encode($res);
+
 }
-public function questionsSave(){
+public function save(){
    if(count($this->form_data['questions'])==0) return;
    foreach ($this->form_data['questions'] as $key => $question){
        $crypt = htmlspecialchars($key);
@@ -58,7 +57,7 @@ public function questionsSave(){
     return var_dump($res);
 
 }
-protected function getAllQuestionsBySurveyCrypt(){
+public function getList(){
         $query = "SELECT * FROM sf_questions WHERE syrvey_crypt = :SUR_CRYPT ";
         $params = array(
             ":SUR_CRYPT" => array('val'=>$this->form_data['survey_crypt'], 'type'=>\PDO::PARAM_STR)
@@ -66,7 +65,7 @@ protected function getAllQuestionsBySurveyCrypt(){
     $res = $this->DB->query($query, $params, true);
     return $res;
 }
-public function getQuestionsAnswersObjectForPresentation(){
+public function getOne(){
         $res = $this->getAllQuestionsBySurveyCrypt();
     $questions_array = array();
     if(count($res)>0) {
@@ -82,5 +81,13 @@ protected function getOrder(){
     $res = $this->DB->query($query, array());
     if($res) return $res['question_order']+1;
     return 1;
+}
+public function edit()
+{
+    // TODO: Implement edit() method.
+}
+public function delete()
+{
+    // TODO: Implement delete() method.
 }
 }

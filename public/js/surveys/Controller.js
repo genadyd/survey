@@ -1,6 +1,7 @@
 import {Model as SurveyModel} from "./Model.js";
 import {AjaxSender} from "../ajax/AjaxSender.js";
 import {Ui} from "./Ui.js";
+import {Ui as SurUi} from "../questions/Ui.js";
 
 
 export class Controller {
@@ -21,42 +22,44 @@ export class Controller {
             this.Ui.newSurveyFormInit();
         })
     }
-
     newSurveySave() {
         $('#survey_form').on('click', '.survay_form_container .new_form_save', (e) => {
             let button = $(e.target),
                 formContainer = button.closest('.survay_form_container');
-
             let jsonObject = this.Model.formJsonBuilder(formContainer);
-            jsonObject.func = 'newSurveySave';
-            jsonObject.collback = this.Ui.newSurveySave;
+            jsonObject.func = 'save';
+            jsonObject.survey_crypt = $('#survey_form').attr('survey_crypt');
             let ajax = new AjaxSender(jsonObject);
-            ajax.AjSender('json');
+            ajax.AjaxSend().then((res)=>{
+                this.Ui.newSurveySave(res)
+            });
         })
     }
-
     getSurveysList() {
         let jsonObject = this.Model.formJsonBuilder();
-        jsonObject.func = 'getSurveysList';
-        jsonObject.collback = this.Ui.getSurveysList;
+        jsonObject.func = 'getList';
         let ajax = new AjaxSender(jsonObject);
-        ajax.AjSender('json');
+        ajax.AjaxSend().then((res)=>{
+            this.Ui.getSurveysList(res)
+        });
     }
-
     surEditorInit() {
         $('#surveys_list_container').on('click', '.one_survey .survey_edit_init', (e) => {
             let target = $(e.target),
                 surveyCrypt = target.closest('.one_survey').attr('survey_crypt'),
                 jsonObject = this.Model.formJsonBuilder();
-            jsonObject.func = 'getOneSurvey';
+            jsonObject.func = 'getSurveyQuestionAnswerObject';
             jsonObject.survey_crypt = surveyCrypt;
-            jsonObject.collback = this.Ui.surEditorInit;
-
             let ajax = new AjaxSender(jsonObject);
-            ajax.AjSender('json');
+            ajax.AjaxSend().then((res)=>{
+                this.Ui.surEditorInit(res);
+                if(res.questions.length > 0 ) {
+                    let qUi = new SurUi();
+                    qUi.questonsListHtmlBuilder(res.questions);
+                }
+            });
         })
     }
-
     surveyEditSave() {
         $('#survey_form').on('click', '.survay_form_container .edit_form_save', (e) => {
             let button = $(e.target),
@@ -64,10 +67,11 @@ export class Controller {
              let jsonObject = this.Model.formJsonBuilder(formContainer);
             jsonObject.survey_thanks_text = jsonObject.thanks_text;
             jsonObject.survey_crypt = button.closest('#survey_form').attr('survey_crypt');
-            jsonObject.func = 'editSurveySave';
-            jsonObject.collback = this.Ui.editSurveySave;
+            jsonObject.func = 'edit';
             let ajax = new AjaxSender(jsonObject);
-            ajax.AjSender('json');
+            ajax.AjaxSend().then(res=>{
+                this.Ui.editSurveySave(res);
+            });
         })
     }
     surveyDelete(){
@@ -76,12 +80,14 @@ export class Controller {
                 let target = $(e.target),
                     surveyCrypt = target.closest('.one_survey').attr('survey_crypt'),
                     jsonObject = this.Model.formJsonBuilder();
-                jsonObject.func = 'removeOneSurvey';
+                jsonObject.func = 'delete';
                 jsonObject.survey_crypt = surveyCrypt;
                 jsonObject.collback = this.Ui.surveyDelete;
 
                 let ajax = new AjaxSender(jsonObject);
-                ajax.AjSender('json');
+                ajax.AjaxSend().then(res=>{
+                    this.Ui.surveyDelete(res)
+                });
             }
         })
     }

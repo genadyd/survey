@@ -13,6 +13,8 @@ set_include_path(get_include_path() . PATH_SEPARATOR .__DIR__.'/api/modules/ques
 set_include_path(get_include_path() . PATH_SEPARATOR .__DIR__.'/api/modules/questions/question_presentation_builder');
 set_include_path(get_include_path() . PATH_SEPARATOR .__DIR__.'/api/modules/surveys');
 set_include_path(get_include_path() . PATH_SEPARATOR .__DIR__.'/api/modules/answers');
+set_include_path(get_include_path() . PATH_SEPARATOR .__DIR__.'/api/modules/forms_elements');
+set_include_path(get_include_path() . PATH_SEPARATOR .__DIR__.'/api/interfaces');
 //set_include_path(get_include_path() . PATH_SEPARATOR .__DIR__.'/public/templates/layouts/home');
 //set_include_path(get_include_path() . PATH_SEPARATOR .__DIR__.'/src/controllers');
 //set_include_path(get_include_path() . PATH_SEPARATOR .__DIR__.'/src/controllers/admin');

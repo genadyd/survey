@@ -7,7 +7,7 @@ export class Model extends LibModel{
             jsonObj = super.formJsonBuilder(form);
         }
         jsonObj.module = 'questions';
-        jsonObj.class = 'Question';
+        // jsonObj.class = 'Question';
         return jsonObj;
     }
 }

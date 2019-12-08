@@ -1,5 +1,5 @@
-import {LibAjaxSender} from "../Lib/LibAjaxSender.js";
+import {MainAjaxSender} from "./MainAjaxSender.js";
 
-export class AjaxSender extends LibAjaxSender{
+export class AjaxSender extends MainAjaxSender{
 
 }

@@ -19,10 +19,12 @@ getQuestionsElements(){
 $('#question_form_container').on('click','.question_form_box .answers_types_open_close:not(.types_oppened)', (e)=>{
     let button = e.target,
         jsonObject = this.Model.formJsonBuilder();
-        jsonObject.func = 'getQuestionElementsTypes';
-        jsonObject.collback = this.Ui.getQuestionsElements;
+        jsonObject.module = 'forms_elements'
+        jsonObject.func = 'getList';
     let ajax = new AjaxSender(jsonObject);
-    ajax.AjSender('json');
+    ajax.AjaxSend().then(res => {
+        this.Ui.getQuestionsElements(res)
+    });
 })
     $('#question_form_container').on('click','.question_form_box .answers_types_open_close.types_oppened', (e)=>{
         let button = $(e.target);

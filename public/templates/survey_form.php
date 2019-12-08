@@ -14,8 +14,7 @@
                 <input type="text" class="form-control" name="survey_name" id="survey_name">
             </div>
             <div class="form-group">
-                <label for="thanks_text">טקסט של עמוד תודה:</label>
-                <textarea name="thanks_text" id="thanks_text" cols="30" rows="10"></textarea>
+                <button type="button" class="message_modal_open btn btn-outline-info" title="הוסף הודעה לסיום הסקר">הודעה לסיום</button>
             </div>
             <div class="form-group">
                 <button type="button" class="new_form_save btn btn-outline-secondary">שמור</button>

@@ -16,13 +16,10 @@ class MainAjaxProcessor
         $get_data = json_decode($_POST['objectToSend'], true);
 //        return var_dump($get_data);
         $module = isset($get_data['module']) ? $get_data['module'] : '';
-        $class_name = isset($get_data['class']) ? $get_data['class']:'';
+        $class_name = 'Controller';
         $method = isset($get_data['func']) ? $get_data['func'] : '';
         $name_spaces = $this->getNameSpace($module);
         $class = $name_spaces.'\\'.$class_name;
-//        return var_dump($class);
-//        if( method_exists($class, $method)){
-//            return var_dump($class);
             $obj = new $class($get_data);
            echo $obj->$method();
     }
@@ -37,6 +34,9 @@ protected function getNameSpace($module){
                 break;
             case 'answers':
                 $name_spaces = 'Modules\Answers';
+                break;
+            case 'forms_elements':
+                $name_spaces = 'Modules\Elements';
                 break;
         }
 

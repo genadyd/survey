@@ -4,7 +4,7 @@ import {Ui as SurUi} from "../questions/Ui.js";
 
 export class Ui {
      newSurveySave(jsonObj){
-        let listHtml ='<div class="one_survey bg-light" survey_crypt="'+jsonObj.crypt+'">' ;
+        let listHtml ='<div class="one_survey bg-light" survey_crypt="'+jsonObj.survey_crypt+'">' ;
          listHtml+='<div class="name_box">'+jsonObj.survey_name+'</div>';
          listHtml+='<div class="controls_box">';
          listHtml+= '<i class="far fa-edit text-info survey_edit_init"></i>';
@@ -27,9 +27,10 @@ export class Ui {
      }
      getSurveysList(surveysJson){
          let listHtml = '';
-         for (let index in surveysJson){
-             listHtml+='<div class="one_survey" survey_crypt="'+surveysJson[index].crypt+'">' ;
-             listHtml+='<div class="name_box">'+surveysJson[index].survey_name+'</div>';
+         // surveysJson = JSON.parse(surveysJson);
+         for(let i=0; i< surveysJson.length; i++){
+             listHtml+='<div class="one_survey" survey_crypt="'+surveysJson[i].crypt+'">' ;
+             listHtml+='<div class="name_box">'+surveysJson[i].survey_name+'</div>';
              listHtml+='<div class="controls_box">';
              listHtml+= '<i class="far fa-edit text-info survey_edit_init"></i>';
              listHtml+= '<i class="far fa-trash-alt survey_remove_init text-danger"></i>';
@@ -50,7 +51,7 @@ export class Ui {
         $('#surveys_list_container').find('.one_survey[survey_crypt='+survayJson.crypt+']').addClass('bg-light');
          let questionCrypt = UniqeGenerator.getKey();
          questionContainer.find('.question_form_box').attr('question_crypt',questionCrypt);
-         CKEDITOR.instances['thanks_text'].setData(survayJson.survey_thanks_text);
+         // CKEDITOR.instances['thanks_text'].setData(survayJson.survey_thanks_text);
          if (formContainer.is('.hidden')) {
              formContainer.removeClass('hidden',function () {
                  if($('.survay_form_container').is('.hidden')){
@@ -58,23 +59,22 @@ export class Ui {
                  }
              });
          }
-         let qUi = new SurUi();
-         qUi.questonsListHtmlBuilder(survayJson.questions);
          if (questionContainer.is('.hidden')) {
              questionContainer.removeClass('hidden');
          }
      }
      newSurveyFormInit() {
          let container = $('#survey_form'),
-             questionContainer = $('#question_form_container');
+             questionContainer = $('#question_form_container'),
+             newSurveyKey = UniqeGenerator.getKey();
          if (container.is('.hidden')) {
              container.removeClass('hidden');
          }
-         container.removeAttr('survey_crypt').find('#survey_name').val('').end()
+
+         container.attr('survey_crypt', newSurveyKey).find('#survey_name').val('').end()
              .find('.survay_form_header .heading').text('הסיף שאלון חדש')
              .end().find('.edit_form_save').removeClass('edit_form_save').addClass('new_form_save');
          $('#surveys_list_container').find('.one_survey').removeClass('bg-light');
-         CKEDITOR.instances['thanks_text'].setData('');
          if (questionContainer.is(':not(.hidden)')) {
              questionContainer.addClass('hidden');
          }

@@ -14,7 +14,7 @@ class General {
         this.questionController = new questionController();
         this.elementController = new elementsController();
         this.saveController = new SaveController();
-        this.skeditorInit();
+        // this.skeditorInit();
         this.surOppenList();
     }
     skeditorInit(){

@@ -7,7 +7,6 @@
  */
 function autoloadAjaxModules($class_name){
     $class_array = explode('\\',$class_name);
-//    return var_dump($class_array[2]);
     $file_path = __DIR__.'/api/modules/ajax/'
         .end($class_array).
         '.php';
@@ -19,7 +18,7 @@ function autoloadSurvey($class_name){
     $class_array = explode('\\',$class_name);
     $file_path =  __DIR__.'/api/modules/surveys/'.end($class_array).'.php';
     if(is_readable($file_path)){
-        require $file_path;
+        require_once $file_path;
     }
 }
 function autoloadQuestion($class_name){
@@ -50,17 +49,26 @@ function autoloadDbProcessor($class_name){
         require $file_path;
     }
 }
-//function autoloadSystem($class_name){
-////    var_dump($class_name);
-//    $class_array = explode('\\',$class_name);
-//    $file_path = 'sys/'.$class_array[1].'.php';
-//    if(is_readable($file_path)){
-//        require $file_path;
-//    }
-//}
+function autoloadInterfaces($class_name){
+    $class_array = explode('\\',$class_name);
+    $file_path = __DIR__.'/api/interfaces/'.end($class_array).'.php';
+    if(is_readable($file_path)){
+        require_once $file_path;
+    }
+}
+function autoloadElements($class_name){
+    $class_array = explode('\\',$class_name);
+    $file_path = __DIR__.'/api/modules/forms_elements/'.end($class_array).'.php';
+    if(is_readable($file_path)){
+        require_once $file_path;
+    }
+}
+
 spl_autoload_register("autoloadQuestionShow");
 spl_autoload_register("autoloadAjaxModules");
 spl_autoload_register("autoloadSurvey");
 spl_autoload_register("autoloadQuestion");
 spl_autoload_register("autoloadAnswer");
 spl_autoload_register("autoloadDbProcessor");
+spl_autoload_register("autoloadInterfaces");
+spl_autoload_register("autoloadElements");
