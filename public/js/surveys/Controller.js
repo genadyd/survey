@@ -2,6 +2,8 @@ import {Model as SurveyModel} from "./Model.js";
 import {AjaxSender} from "../ajax/AjaxSender.js";
 import {Ui} from "./Ui.js";
 import {Ui as SurUi} from "../questions/Ui.js";
+import {CollectApi} from "../CollectAPI/CollectApi.js";
+// import {SurveyObjectBuilder} from "../save_object_builder/SurveyObjectBuilder.js";
 
 
 export class Controller {
@@ -15,6 +17,7 @@ export class Controller {
         this.surveyEditSave();
         this.surveyDelete();
         this.surveyEditorFormOpenClose();
+        window.SurveysObject = {}
     }
 
     newSurveyFormInit() {
@@ -32,6 +35,8 @@ export class Controller {
             let ajax = new AjaxSender(jsonObject);
             ajax.AjaxSend().then((res)=>{
                 this.Ui.newSurveySave(res)
+                res['crypt'] = res.survey_crypt;
+                CollectApi.tempSaveObjectProcessing('survey','add', res);
             });
         })
     }
@@ -41,6 +46,10 @@ export class Controller {
         let ajax = new AjaxSender(jsonObject);
         ajax.AjaxSend().then((res)=>{
             this.Ui.getSurveysList(res)
+            res.forEach((survey, index)=>{
+                CollectApi.tempSaveObjectProcessing('survey','add', survey);
+            })
+            // let surBuilder = new SurveyObjectBuilder(res)
         });
     }
     surEditorInit() {
@@ -71,6 +80,7 @@ export class Controller {
             let ajax = new AjaxSender(jsonObject);
             ajax.AjaxSend().then(res=>{
                 this.Ui.editSurveySave(res);
+                CollectApi.tempSaveObjectProcessing('survey','change', {'crypt':res.survey_crypt,'name':res.survey_name});
             });
         })
     }
@@ -87,6 +97,7 @@ export class Controller {
                 let ajax = new AjaxSender(jsonObject);
                 ajax.AjaxSend().then(res=>{
                     this.Ui.surveyDelete(res)
+                    CollectApi.tempSaveObjectProcessing('survey','delete', {'crypt':res.survey_crypt});
                 });
             }
         })

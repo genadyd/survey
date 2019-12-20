@@ -4,7 +4,7 @@ export class Ui{
 
       // console.log(map);
       for( let key in jsonData) {
-          elementsHtml += '<button type="button" type_crypt="'+jsonData[key].crypt+'" element_type="' + jsonData[key].type + '" class="btn btn-outline-success">'
+          elementsHtml += '<button type="button" type_crypt="'+jsonData[key].crypt+'" element_type="' + jsonData[key].type + '" class="btn btn-outline-success tst">'
               + jsonData[key].element_title +
               '</button>';
       }

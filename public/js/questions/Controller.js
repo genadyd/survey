@@ -13,7 +13,7 @@ export class Controller {
         this.Ui = new questionUi()
         this.AjaxSender = new AjaxSender()
         this.getQuestionsElements();
-        // this.QuestionSaveFromMainPage();
+        window.QuestionObject = {}
 }
 getQuestionsElements(){
 $('#question_form_container').on('click','.question_form_box .answers_types_open_close:not(.types_oppened)', (e)=>{
@@ -61,4 +61,5 @@ $('#question_form_container').on('click','.question_form_box .answers_types_open
             showModalForm.modalShow();
         })
     }
+
 }

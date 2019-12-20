@@ -1,5 +1,5 @@
 
-    <div id="survey_form" class="container hidden">
+    <div id="survey_form" class="container">
         <div class="survay_form_header">
             <h3 class="heading">
                 הסיף שאלון חדש

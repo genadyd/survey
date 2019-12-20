@@ -9,10 +9,12 @@ export class BoxElement extends SuperElement{
       let model = new Model();
       // let Ui = new Ui;
       let jsonObj = model.formJsonBuilder();
-      jsonObj.func = 'getTypeByBoxId';
-      jsonObj.collback = this.Ui.buttonShow;
-      jsonObj.box_crypt = this.elementTypeCrypt;
+      jsonObj.module = 'forms_elements'
+      jsonObj.func = 'getOne';
+      jsonObj.crypt = this.elementTypeCrypt;
       let ajax = new AjaxSender(jsonObj);
-      ajax.AjSender('json');
+      ajax.AjaxSend().then((res) => {
+          this.Ui.buttonShow(res)
+      });
   }
 }

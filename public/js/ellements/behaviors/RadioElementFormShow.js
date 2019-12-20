@@ -3,10 +3,11 @@ import {UniqeGenerator} from "../../Lib/UniqeGenerator.js";
 
 export class RadioElementFormShow extends ElementFormShowBehaviors{
     formBuilder(){
+        const elementTitle = this.elementObject.elementType == 'select_container'?'תיבת בחירה':'כפתור רדיו'
         let formHtml ='' +
             '<div class="one_element_box" box_crypt="'+this.elementObject.boxCrypt+'" element_key="' + UniqeGenerator.getKey() + '" element_type="' + this.elementObject.elementType + '" question_crypt="' + this.elementObject.elementQuestionCrypt + '" element_type_crypt="' + this.elementObject.elementTypeCrypt + '">' +
             '<div class="ans_container">' +
-            '<div class="type_heading">' + this.elementObject.elementTypeTitle + '</div> ' +
+            '<div class="type_heading">' + elementTitle + '</div> ' +
             '<div class="answer_title">' +
             '<input type="text" placeholder="התשובה">' +
             '</div>' +

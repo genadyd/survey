@@ -79,16 +79,8 @@ export class Controller{
                 }
             let showBehavior ='',
                 curentElement = '';
-            switch (elementType) {
-                case 'radio':
-                    showBehavior = new RadioElementFormShow(elementObject);
-                    curentElement = new RadioElement({button: button}, showBehavior);
-                    break;
-                case 'option':
-                    showBehavior = new RadioElementFormShow(elementObject);
-                    curentElement = new RadioElement({button: button}, showBehavior);
-                    break;
-            }
+            showBehavior = new RadioElementFormShow(elementObject);
+            curentElement = new RadioElement({button: button}, showBehavior);
             curentElement.formShow();
         })
     }

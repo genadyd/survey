@@ -1,10 +1,12 @@
-<div id="surveys_list_container" class="hidden">
-  <div class="survey_inner_box">
+<div id="surveys_list_container" >
       <div class="heading_box">
           <h3>שאלונים</h3>
+          <div class="add_new_survey">
+              שאלון חדש
+          </div>
       </div>
-      <hr>
+
       <div class="survey_list">
+          <?php require_once 'public/templates/survey_form.php' ?>
       </div>
-  </div>
 </div>

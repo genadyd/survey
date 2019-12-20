@@ -1,21 +1,19 @@
 .nav_back{
-  height: 51px;
+  height: 11vh;
 }
 #survey_admin_navbar{
   display: flex;
   justify-content: space-between;
   box-shadow: 2px 0 4px;
   background-color: #fff;
-  //position: fixed;
-  //top: 0;
-  //left: 0;
-  height: 51px;
+  height: 11vh;
   width: 100vw;
   .nav_inner {
     display: flex;
     justify-content: right;
     width: 50%;
     margin: 0;
+    align-items: center;
   }
   .navbar-left{
     width: 50px;

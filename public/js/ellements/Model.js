@@ -5,10 +5,9 @@ export class Model extends LibModel{
         let jsonObj = {}
         if(form !='' && form.length>0 ) {
             jsonObj = super.formJsonBuilder(form);
-
         }
-        jsonObj.module = 'answers';
-        jsonObj.class = 'Answer';
+        jsonObj.module = 'forms_elements';
+
         return jsonObj;
     }
 }

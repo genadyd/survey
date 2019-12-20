@@ -30,7 +30,13 @@ class MainElements implements ModelInterface
     }
     public function getOne()
     {
-        // TODO: Implement getOne() method.
+        $query = 'SELECT * FROM sf_elements_types WHERE crypt = :CRYPT  ';
+        $params_array = array(
+            ':CRYPT'=>array('val'=>$this->form_data['crypt'],
+                'type'=>\PDO::PARAM_STR)
+        );
+        $res = $this->DB->query($query, $params_array,false);
+        return $res;
     }
     public function edit()
     {

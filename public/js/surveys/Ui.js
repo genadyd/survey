@@ -5,11 +5,11 @@ import {Ui as SurUi} from "../questions/Ui.js";
 export class Ui {
      newSurveySave(jsonObj){
         let listHtml ='<div class="one_survey bg-light" survey_crypt="'+jsonObj.survey_crypt+'">' ;
-         listHtml+='<div class="name_box">'+jsonObj.survey_name+'</div>';
          listHtml+='<div class="controls_box">';
          listHtml+= '<i class="far fa-edit text-info survey_edit_init"></i>';
          listHtml+= '<i class="far fa-trash-alt text-danger survey_remove_init"></i>';
          listHtml+='</div>';
+         listHtml+='<div class="name_box">'+jsonObj.survey_name+'</div>';
          listHtml+= '</div>';
          let formContainer = $('#survey_form'),
              questionContainer = $('#question_form_container'),
@@ -30,14 +30,14 @@ export class Ui {
          // surveysJson = JSON.parse(surveysJson);
          for(let i=0; i< surveysJson.length; i++){
              listHtml+='<div class="one_survey" survey_crypt="'+surveysJson[i].crypt+'">' ;
-             listHtml+='<div class="name_box">'+surveysJson[i].survey_name+'</div>';
              listHtml+='<div class="controls_box">';
              listHtml+= '<i class="far fa-edit text-info survey_edit_init"></i>';
              listHtml+= '<i class="far fa-trash-alt survey_remove_init text-danger"></i>';
              listHtml+='</div>';
+             listHtml+='<div class="name_box">'+surveysJson[i].survey_name+'</div>';
              listHtml+= '</div>';
          }
-         $('#surveys_list_container .survey_list').html(listHtml)
+         $('#surveys_list_container .survey_list').append(listHtml)
      }
      surEditorInit(survayJson){
     let formContainer = $('#survey_form'),
@@ -70,7 +70,6 @@ export class Ui {
          if (container.is('.hidden')) {
              container.removeClass('hidden');
          }
-
          container.attr('survey_crypt', newSurveyKey).find('#survey_name').val('').end()
              .find('.survay_form_header .heading').text('הסיף שאלון חדש')
              .end().find('.edit_form_save').removeClass('edit_form_save').addClass('new_form_save');
