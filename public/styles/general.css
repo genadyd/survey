@@ -111,6 +111,9 @@ html {
           padding-bottom: 15px; }
           html body #page_wrapper #survey_form .survay_form_header .survey_form_openclose {
             cursor: pointer; }
+            html body #page_wrapper #survey_form .survay_form_header .survey_form_openclose .fas {
+              font-size: 20px;
+              color: #de6b0e; }
       html body #page_wrapper .quuestions_display_container .oneQuestion .card-header .question_remove {
         float: left;
         cursor: pointer; }

@@ -51,13 +51,8 @@ export class Ui {
         $('#surveys_list_container').find('.one_survey[survey_crypt='+survayJson.crypt+']').addClass('bg-light');
          let questionCrypt = UniqeGenerator.getKey();
          questionContainer.find('.question_form_box').attr('question_crypt',questionCrypt);
-         // CKEDITOR.instances['thanks_text'].setData(survayJson.survey_thanks_text);
          if (formContainer.is('.hidden')) {
-             formContainer.removeClass('hidden',function () {
-                 if($('.survay_form_container').is('.hidden')){
-                     $('.survey_form_openclose ').click();
-                 }
-             });
+             formContainer.removeClass('hidden');
          }
          if (questionContainer.is('.hidden')) {
              questionContainer.removeClass('hidden');
@@ -65,7 +60,6 @@ export class Ui {
      }
      newSurveyFormInit() {
          let container = $('#survey_form'),
-             questionContainer = $('#question_form_container'),
              newSurveyKey = UniqeGenerator.getKey();
          if (container.is('.hidden')) {
              container.removeClass('hidden');
@@ -73,10 +67,8 @@ export class Ui {
          container.attr('survey_crypt', newSurveyKey).find('#survey_name').val('').end()
              .find('.survay_form_header .heading').text('הסיף שאלון חדש')
              .end().find('.edit_form_save').removeClass('edit_form_save').addClass('new_form_save');
-         $('#surveys_list_container').find('.one_survey').removeClass('bg-light');
-         if (questionContainer.is(':not(.hidden)')) {
-             questionContainer.addClass('hidden');
-         }
+         // $('#surveys_list_container').find('.one_survey').removeClass('bg-light');
+
      }
      editSurveySave(survayJson){
          let formContainer = $('#survey_form'),

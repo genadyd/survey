@@ -29,7 +29,6 @@
             </ul>
         </div>
         <div class="nav container navbar-nav navbar-left text-primary">
-<!--            <div class="open_close_list"><i class="fas fa-chevron-down"></i>  </div>-->
         </div>
     </nav>
     <section id="survey_list_section" class="container">

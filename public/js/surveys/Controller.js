@@ -16,7 +16,7 @@ export class Controller {
         this.surEditorInit();
         this.surveyEditSave();
         this.surveyDelete();
-        this.surveyEditorFormOpenClose();
+        this.surveyEditorFormClose();
         window.SurveysObject = {}
     }
 
@@ -102,20 +102,14 @@ export class Controller {
             }
         })
     }
-    surveyEditorFormOpenClose(){
-        $('#survey_form').on('click', '.survay_form_header .survey_form_openclose .cl',(e)=>{
-            let closer = $(e.target),
-            form = closer.closest('#survey_form').find('.survay_form_container');
-            if(form.is('.hidden')){
-                form.removeClass('hidden');
-                closer.removeClass('fa-chevron-down').addClass(' fa-chevron-up');
-                closer.closest('.survey_form_openclose').attr('title','הסתר את תיבת העריכה של הסקר');
-            }else{
+    surveyEditorFormClose(){
+        $('#survey_form').on('click', '.survay_form_header .survey_form_openclose' ,(e)=>{
+            const closer = $(e.target),
+            form = closer.closest('#survey_form'),
+            formContainer = form.find('.survay_form_container');
                 form.addClass('hidden');
-                closer.removeClass('fa-chevron-up').addClass('fa-chevron-down');
-                closer.closest('.survey_form_openclose').attr('title','הצג את תיבת העריכה של הסקר');
+                closer.closest('.survey_form_openclose').attr('title','הסתר את תיבת העריכה של הסקר');
 
-            }
         })
     }
 }
