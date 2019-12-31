@@ -12,7 +12,6 @@ namespace Modules\Surveys;
 
 use DBprocessor\Processor\SmartFormProcessor;
 use Interfaces\ModelInterface;
-use Modules\Questions\Question;
 
 abstract class MainSurvey implements ModelInterface {
     protected $form_data;
@@ -30,12 +29,14 @@ abstract class MainSurvey implements ModelInterface {
     public function save(){
       $survey_crypt = (string) htmlspecialchars($this->form_data['survey_crypt']);
       $survey_name = (string) htmlspecialchars($this->form_data['survey_name']);
+      $survey_description = (string) htmlspecialchars($this->form_data['survey_description']);
       $survey_order = $this->getSurveyMaxOrder();
       $ct = date('Y-m-d H:i:s', time());
-      $query = "INSERT INTO sf_surveys ( crypt, survey_name, survey_order, CT ) VALUES (:CRYPT, :NAME, :SUR_ORDER, :CT )";
+      $query = "INSERT INTO sf_surveys ( crypt, survey_name, survey_description, survey_order, CT ) VALUES (:CRYPT, :NAME, :SUR_DESCRIPTION, :SUR_ORDER, :CT )";
       $params_array = array(
           ':CRYPT'=> array('val'=>$survey_crypt, 'type'=>\PDO::PARAM_STR),
           ':NAME' => array('val'=>$survey_name, 'type'=>\PDO::PARAM_STR),
+          ':SUR_DESCRIPTION' =>array('val'=>$survey_description, 'type'=>\PDO::PARAM_STR),
           ':SUR_ORDER'=> array('val'=>$survey_order, 'type'=>\PDO::PARAM_INT),
           ':CT' => array('val'=>$ct, 'type'=>''),
       );
@@ -57,11 +58,12 @@ abstract class MainSurvey implements ModelInterface {
    public function edit(){
        $survey_crypt = (string) htmlspecialchars($this->form_data['survey_crypt']);
        $survey_name = (string) htmlspecialchars($this->form_data['survey_name']);
-//       $survey_thanks_text = (string) htmlspecialchars($this->form_data['thanks_text']);
-        $query = "UPDATE sf_surveys SET survey_name = :NAME WHERE crypt = :CRYPT";
+       $survey_description = (string) htmlspecialchars($this->form_data['survey_description']);
+        $query = "UPDATE sf_surveys SET survey_name = :NAME , survey_description = :DESC  WHERE crypt = :CRYPT";
        $params_array = array(
            ':CRYPT'=> array('val'=>$survey_crypt, 'type'=>\PDO::PARAM_STR),
            ':NAME' => array('val'=>$survey_name, 'type'=>\PDO::PARAM_STR),
+           ':DESC' => array('val'=>$survey_description, 'type'=>\PDO::PARAM_STR),
        );
        $res = $this->DB->query($query, $params_array );
         return $this->form_data;
@@ -74,6 +76,18 @@ abstract class MainSurvey implements ModelInterface {
        $query = " DELETE FROM sf_surveys WHERE crypt = :CRYPT ";
        $res = $this->DB->query($query, $params_array );
        return $this->form_data;
+   }
+   public function saveOrders(){
+        foreach ($this->form_data['orders'] as $key => $val){
+            $params_array = array(
+                ':CRYPT'=> array('val'=>$key, 'type'=>\PDO::PARAM_STR),
+                ':SUR_ORDER' =>array('val'=>$val, 'type'=>\PDO::PARAM_INT)
+            );
+            $query = "UPDATE sf_surveys SET survey_order = :SUR_ORDER WHERE crypt = :CRYPT ";
+            $res = $this->DB->query($query, $params_array );
+            var_dump($res);
+        }
+
    }
 
 }

@@ -72,7 +72,43 @@ html {
               padding: 1em;
               margin-bottom: 30px;
               box-shadow: 0 0 10px 2px #bebebe;
-              direction: rtl; }
+              direction: rtl;
+              background-color: #fff; }
+              html body #page_wrapper #survey_list_section #surveys_list_container .survey_list .one_survey .survey_box_header {
+                display: flex;
+                justify-content: flex-start;
+                position: relative;
+                border-bottom: #de6b0e 1px solid;
+                padding-bottom: 10px; }
+                html body #page_wrapper #survey_list_section #surveys_list_container .survey_list .one_survey .survey_box_header .controls_box {
+                  display: flex;
+                  position: absolute;
+                  left: 0; }
+                  html body #page_wrapper #survey_list_section #surveys_list_container .survey_list .one_survey .survey_box_header .controls_box .controll_button {
+                    color: #fff;
+                    padding: 3px 11px;
+                    border-radius: 10px;
+                    font-size: 16px;
+                    cursor: pointer; }
+                    html body #page_wrapper #survey_list_section #surveys_list_container .survey_list .one_survey .survey_box_header .controls_box .controll_button.edit_button {
+                      background-color: #de6b0e;
+                      margin-right: 20px; }
+                    html body #page_wrapper #survey_list_section #surveys_list_container .survey_list .one_survey .survey_box_header .controls_box .controll_button.remove_button {
+                      background-color: #eb4741;
+                      margin-right: 20px; }
+                    html body #page_wrapper #survey_list_section #surveys_list_container .survey_list .one_survey .survey_box_header .controls_box .controll_button.settings_button {
+                      background-color: #3195a5; }
+                html body #page_wrapper #survey_list_section #surveys_list_container .survey_list .one_survey .survey_box_header .sort_icon {
+                  color: #bebebe;
+                  cursor: move; }
+                html body #page_wrapper #survey_list_section #surveys_list_container .survey_list .one_survey .survey_box_header .name_box {
+                  margin-right: 20px;
+                  font-size: 20px; }
+              html body #page_wrapper #survey_list_section #surveys_list_container .survey_list .one_survey .descript_box {
+                text-align: right;
+                margin-top: 20px; }
+                html body #page_wrapper #survey_list_section #surveys_list_container .survey_list .one_survey .descript_box p {
+                  direction: rtl; }
       html body #page_wrapper .nav_back {
         height: 11vh; }
       html body #page_wrapper #survey_admin_navbar {
@@ -99,24 +135,36 @@ html {
             text-align: center;
             line-height: 2.2; }
       html body #page_wrapper #survey_form {
-        padding-top: 30px;
-        direction: rtl;
-        text-align: right; }
+        position: fixed;
+        top: 11vh;
+        height: calc(100vh - 11vh);
+        background-color: #fff;
+        width: 25vw;
+        border-left: solid 1px #bebebe;
+        z-index: 1;
+        right: 0;
+        padding-top: 15px; }
         html body #page_wrapper #survey_form .survay_form_header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          border-bottom: solid 1px #ebebeb;
-          margin-bottom: 20px;
-          padding-bottom: 15px; }
+          border-bottom: #de6b0e 1px solid; }
           html body #page_wrapper #survey_form .survay_form_header .survey_form_openclose {
-            cursor: pointer; }
-            html body #page_wrapper #survey_form .survay_form_header .survey_form_openclose .fas {
-              font-size: 20px;
-              color: #de6b0e; }
-      html body #page_wrapper .quuestions_display_container .oneQuestion .card-header .question_remove {
-        float: left;
-        cursor: pointer; }
+            color: #bebebe; }
+          html body #page_wrapper #survey_form .survay_form_header .survey_editor_head_name {
+            background-color: #eb4741;
+            padding: 0 15px;
+            border-radius: 11px;
+            color: #fff;
+            margin: 0 5px;
+            display: inline-block; }
+        html body #page_wrapper #survey_form .survay_form_container {
+          margin-top: 13px; }
+          html body #page_wrapper #survey_form .survay_form_container label {
+            display: flex; }
+      html body #page_wrapper #questions_list_section .questions_section_header {
+        display: flex;
+        justify-content: space-between; }
       html body #page_wrapper #question_form_container {
         position: relative;
         text-align: right; }

@@ -1,21 +1,34 @@
 #survey_form{
-  padding-top: 30px;
-  direction: rtl;
-  text-align: right;
-  .survay_form_header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: solid 1px #ebebeb;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    .survey_form_openclose{
-        cursor:pointer;
-      .fas{
-        font-size: 20px;
-        color:#de6b0e;
-      }
-    }
-
+ position: fixed;
+ top: 11vh;
+ height: calc(100vh - 11vh);
+ background-color: #fff;
+ width: 25vw;
+ border-left: solid 1px #bebebe;
+ z-index: 1;
+ right: 0;
+ padding-top: 15px;
+ .survay_form_header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: #de6b0e 1px solid;
+  .survey_form_openclose{
+   color:#bebebe;
   }
+  .survey_editor_head_name{
+   background-color: #eb4741;
+   padding: 0 15px;
+   border-radius: 11px;
+   color: #fff;
+   margin: 0 5px;
+   display: inline-block;
+  }
+ }
+ .survay_form_container {
+  margin-top: 13px;
+  label {
+   display: flex;
+  }
+ }
 }

@@ -17,11 +17,35 @@ export class Controller {
         this.surveyEditSave();
         this.surveyDelete();
         this.surveyEditorFormClose();
-        window.SurveysObject = {}
-    }
+        this.surveysSorting();
 
+        window.SurveysObject = {}
+
+    }
+    surveysSorting(){
+        $('.survey_list').sortable({stop: ()=> {
+                this.surveysOrders()
+            }
+        });
+    }
+    surveysOrders(){
+        let counter = 1;
+        let surveys = document.getElementsByClassName('one_survey');
+        let i = surveys.length-1;
+        let ordersObj = {};
+        const jsonObject ={'func':'saveOrders','module':'surveys' }
+       for(; i >= 0; i--){
+           ordersObj[surveys[i].getAttribute('survey_crypt')] = counter
+          counter++
+       }
+        jsonObject['orders']=ordersObj
+        let ajax = new AjaxSender(jsonObject);
+        ajax.AjaxSend().then((res)=>{
+        });
+
+    }
     newSurveyFormInit() {
-        $('#survey_admin_navbar').on('click', '.new_sur_init', () => {
+        $('#surveys_list_container').on('click', '.add_new_survey', () => {
             this.Ui.newSurveyFormInit();
         })
     }
@@ -53,7 +77,7 @@ export class Controller {
         });
     }
     surEditorInit() {
-        $('#surveys_list_container').on('click', '.one_survey .survey_edit_init', (e) => {
+        $('#surveys_list_container').on('click', '.one_survey .edit_button', (e) => {
             let target = $(e.target),
                 surveyCrypt = target.closest('.one_survey').attr('survey_crypt'),
                 jsonObject = this.Model.formJsonBuilder();
@@ -85,7 +109,7 @@ export class Controller {
         })
     }
     surveyDelete(){
-        $('#surveys_list_container').on('click', '.one_survey .survey_remove_init', (e) => {
+        $('#surveys_list_container').on('click', '.one_survey .remove_button', (e) => {
             if(confirm('האם אתה באמת רוצה למחוק את השאלון הזה')) {
                 let target = $(e.target),
                     surveyCrypt = target.closest('.one_survey').attr('survey_crypt'),
@@ -98,6 +122,7 @@ export class Controller {
                 ajax.AjaxSend().then(res=>{
                     this.Ui.surveyDelete(res)
                     CollectApi.tempSaveObjectProcessing('survey','delete', {'crypt':res.survey_crypt});
+                    this.surveysOrders();
                 });
             }
         })

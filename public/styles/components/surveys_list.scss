@@ -5,6 +5,7 @@
   #surveys_list_container {
     height: 100%;
     position: relative;
+
     .heading_box {
       padding: 2em 1.5em;
       display: flex;
@@ -35,13 +36,16 @@
       padding: 1em 1.5em;
       scrollbar-color: #f18024 #ebebeb;
       direction: ltr;
+
       &::-webkit-scrollbar {
         width: 10px;
       }
+
       &::-webkit-scrollbar-track {
         box-shadow: inset 0 0 1px #bebebe;
         border-radius: 5px;
       }
+
       &::-webkit-scrollbar-thumb {
         background: #f18024;
         border-radius: 5px;
@@ -55,6 +59,56 @@
         margin-bottom: 30px;
         box-shadow: 0 0 10px 2px #bebebe;
         direction: rtl;
+        background-color: #fff;
+
+        .survey_box_header {
+          display: flex;
+          justify-content: flex-start;
+          position: relative;
+          border-bottom: #de6b0e 1px solid;
+          padding-bottom: 10px;
+
+          .controls_box {
+            display: flex;
+            position: absolute;
+            left: 0;
+            .controll_button {
+              color: #fff;
+              padding: 3px 11px;
+              border-radius: 10px;
+              font-size: 16px;
+              cursor: pointer;
+
+              &.edit_button {
+                background-color: #de6b0e;
+                margin-right: 20px;
+              }
+              &.remove_button {
+                background-color: #eb4741;
+                margin-right: 20px;
+              }
+              &.settings_button{
+                background-color: #3195a5;
+              }
+            }
+
+          }
+          .sort_icon{
+            color: #bebebe;
+            cursor: move;
+          }
+          .name_box {
+            margin-right: 20px;
+            font-size: 20px;
+          }
+        }
+        .descript_box{
+          text-align: right;
+          margin-top: 20px;
+          p{
+            direction: rtl;
+          }
+        }
       }
     }
   }

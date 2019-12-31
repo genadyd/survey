@@ -25,5 +25,9 @@ class Controller extends ControllerInterface
       $res['questions'] = json_decode($question->getList());
       return json_encode($res);
   }
+    public function saveOrders(){
+      $this->model->saveOrders();
+
+    }
 
 }

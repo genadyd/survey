@@ -1,4 +1,9 @@
 export class Ui{
+
+  questionSectionInit(){
+      $('section:not(.hidden)').addClass('hidden');
+      $('section#questions_list_section').removeClass('hidden');
+  }
   getQuestionsElements(jsonData) {
       let elementsHtml ='';
 

@@ -1,10 +1,10 @@
 
     <div id="survey_form" class="container hidden">
         <div class="survay_form_header">
-            <h3 class="heading">
+            <h5 class="heading">
                 הסיף שאלון חדש
-            </h3>
-            <div class="survey_form_openclose text-primary" title="הסתר את תיבת העריכה של הסקר">
+            </h5>
+            <div class="survey_form_openclose" title="הסתר את תיבת העריכה של הסקר">
                 <i class="fas fa-times"></i>
             </div>
         </div>
@@ -14,7 +14,8 @@
                 <input type="text" class="form-control" name="survey_name" id="survey_name">
             </div>
             <div class="form-group">
-                <button type="button" class="message_modal_open btn btn-outline-info" title="הוסף הודעה לסיום הסקר">הודעה לסיום</button>
+                <label for="survey_description">תיאור הסקר:</label>
+                <textarea  rows="5" class="form-control" name="survey_description" id="survey_description"></textarea>
             </div>
             <div class="form-group">
                 <button type="button" class="new_form_save btn btn-outline-secondary">שמור</button>
